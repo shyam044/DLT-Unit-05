@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DLT Unit-05 - Questions</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f9f9f9;
+      color: #333;
+      font-size: 1rem;
+    }
+    header {
+      background-color: #0077cc;
+      color: white;
+      padding: 1rem 0.5rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      page-break-after: always;
+    }
+    h2 {
+      color: #0077cc;
+      margin: 2rem 0 1rem;
+      font-size: 1.6rem;
+    }
+    h3 {
+      color: #444;
+      margin-top: 0.8rem;
+      margin-bottom: 0.5rem;
+      font-size: 1.3rem;
+    }
+    p {
+      margin: 0.5rem 0;
+    }
+    ul {
+      margin: 0.3rem 0 1rem 1rem;
+      padding-left: 1rem;
+    }
+    li>ul {
+      margin-top: 0.3rem;
+      margin-bottom: 0.6rem;
+      padding-left: 0.7rem;
+    }
+    li>ul>li {
+      margin-bottom: 0.4rem;
+    }
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 1rem auto;
+      border-radius: 6px;
+    }
+    @media (max-width: 768px) {
+      body {
+        font-size: 0.95rem;
+      }
+      header {
+        font-size: 1.3rem;
+        padding: 0.8rem 0.5rem;
+      }
+      .container {
+        padding: 0.9rem;
+        margin: 1.5rem auto;
+      }
+      h2 {
+        font-size: 1.3rem;
+        margin-top: 1.8rem;
+      }
+      h3 {
+        font-size: 1.1rem;
+        margin-top: 0.7rem;
+      }
+      ul {
+        margin-left: 0.5rem;
+        padding-left: 0.7rem;
+      }
+      li>ul {
+        margin-top: 0.2rem;
+        margin-bottom: 0.4rem;
+        padding-left: 0.5rem;
+      }
+      li>ul>li {
+        margin-bottom: 0.3rem;
+      }
+      ul li {
+        font-size: 0.95rem;
+        line-height: 1.3rem;
+      }
+    }
+    @media print {
+      .container {
+        page-break-after: always;
+      }
+    }
+    img {
+      display: block;
+      max-width: 55%;
+      height: auto;
+      max-height: 280px;
+      object-fit: contain;
+      margin: 1rem auto;
+      border-radius: 6px;
+    }
+    #lightbox {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
+    }
+    #lightbox.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    #lightbox img {
+      max-width: 80%;
+      max-height: 80%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      transform: scale(0.8);
+      transition: transform 0.3s ease;
+    }
+    #lightbox.active img {
+      transform: scale(1);
+      cursor: zoom-out;
+    }
+    #image-tip {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 119, 204, 0.95);
+      color: #fff;
+      padding: 0.8rem 1.2rem;
+      border-radius: 6px;
+      font-size: 1rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      z-index: 2000;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.6s ease;
+    }
+    #image-tip.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    img:hover {
+      transform: scale(1.05);
+    }
+     /* Table base styles */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      background: transparent;
+    }
+
+    th,
+    td {
+      border: 1px solid #ddd;
+      padding: 0.8rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      background-color: #0077cc;
+      color: white;
+      font-weight: bold;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    tr:hover {
+      background-color: #e6f0ff;
+    }
+
+    /* Make tables horizontally scrollable on small screens instead of restructuring into blocks.
+       This preserves semantics and improves readability. */
+    .table-responsive {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      width: 100%;
+    }
+
+    /* optional minimum width so complex tables remain readable on desktop and can scroll on mobile */
+    .table-responsive table {
+      min-width: 640px; /* adjust as needed */
+    }
+            pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 0 6px 6px 6px;
+            overflow-x: auto;
+            margin: -6px 0 0.6rem 1rem;
+            font-size: 0.95rem;
+            border: 1px solid #ddd;
+        }
+        .output {
+            margin: 0 0 0 1.2rem;
+            padding: 0.45rem 0.8rem;
+            font-size: 1rem;
+            background: #f8f8fa;
+            border-radius: 4px;
+            border-left: 3px solid #50aaff;
+        }
+        @media (max-width: 768px) {
+            .container { padding: 0.7rem; }
+            h2 { font-size: 1.13rem; margin-top: 1rem;}
+            .code-label, pre { margin-left: 0.5rem; font-size: 0.87rem; }
+            .output { margin-left: 0.6rem; font-size: 0.96rem; padding: 0.36rem 0.6rem;}
+        }
+        @media (max-width: 480px) {
+            ul, ul ul { margin-left: 0.46rem !important; padding-left: 0.5rem !important;}
+        }
+  </style>
+     <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WJ8GK8VNS9"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-WJ8GK8VNS9');
+</script>
+</head>
+<body>
+  <header>
+    DLT Unit-05
+  </header>
+  <div id="image-tip">💡 Click on any image for better visualizing!</div>
+  <div id="lightbox">
+    <img id="lightbox-img" src="" alt="Enlarged image">
+  </div>
+  <div class="container">
+    <h2>1) Machine Vision</h2>
+    <ul>
+      <li>Biological Vision techniques are inspired to build modern vision techniques[Deep Learning]</li>
+    </ul>
+    <img src="IMG-20251201-WA0001.jpg" alt="Biological Vision"/>
+    <h3>Advantages of Machine Vision:</h3>
+    <ul>
+      <li>Accuracy</li>
+      <li>Consistency</li>
+      <li>Efficiency</li>
+      <li>Fastness</li>
+      <li>Reduction in Human Error</li>
+      <li>Saves time and cost</li>
+    </ul>
+    <h3>Libraries used for Machine Vision:</h3>
+    <ul>
+      <li>OpenCV</li>
+      <li>TensorFlow</li>
+      <li>Keras</li>
+      <li>PyTorch</li>
+      <li>MATLAB</li>
+    </ul>
+  </div>
+  <header>
+    DLT Unit-05
+  </header>
+  <div class="container">
+    <h2>2) NLP</h2>
+    <ul>
+      <li>NLP stands for Natural Language Processing</li>
+    </ul>
+    <h3>NLP tools:</h3>
+    <ul>
+      <li>NLTK (Natural Language Tool Kit)</li>
+      <li>SpaCy</li>
+      <li>OpenNLP</li>
+      <li>Gensim</li>
+      <li>Cloud-based NLP:
+        <ul>
+          <li>AWS</li>
+          <li>Azure</li>
+          <li>Google Cloud</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>NLP Algorithms:</h3>
+    <ul>
+      <li>Tokenization Algorithm</li>
+      <li>Parsing Algorithm</li>
+      <li>Part-of-speech Algorithm</li>
+      <li>Classification Algorithm</li>
+      <li>Clustering Algorithm</li>
+    </ul>
+    <h3>Role of AI in NLP:</h3>
+    <ul>
+      <li>Understanding text:
+        <ul>
+          <li>AI reads the text and understands its meaning</li>
+        </ul>
+      </li>
+      <li>Understanding speech:
+        <ul>
+          <li>AI listens to the speech and understands its meaning</li>
+        </ul>
+      </li>
+      <li>Responds:
+        <ul>
+          <li>AI responds to the text and speech</li>
+        </ul>
+      </li>
+      <li>Speech Recognition:
+        <ul>
+          <li>AI recognizes the speech and converts it into text format</li>
+        </ul>
+      </li>
+      <li>Language Translation:
+        <ul>
+          <li>AI converts from one language to another language</li>
+          <li>Example:
+            <ul>
+              <li>Google Translate: English to Telugu</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Example:</h3>
+    <ul>
+      <li>AI Chatbots:
+        <ul>
+          <li>ChatGPT</li>
+          <li>perplexity</li>
+        </ul>
+      </li>
+      <li>Voice Assistants:
+        <ul>
+          <li>Siri</li>
+          <li>Alexa</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <header>
+    DLT Unit-05
+  </header>
+  <div class="container">
+    <h2>3) Generative Adversarial Networks[GAN]</h2>
+    <ul>
+      <li>GAN stands for Generative Adversarial Networks</li>
+    </ul>
+    <img src="WhatsApp Image 2025-11-10 at 19.05.38_33a3e17f.jpg" alt="GAN"/>
+    <h3>Generator:</h3>
+    <ul>
+      <li>A Generator creates fake data from random inputs</li>
+      <li>The Goal of the Generator is to produce fake data that looks like realistic one</li>
+    </ul>
+    <h3>Real Data and Fake Data:</h3>
+    <ul>
+      <li>Real Data: Real sample from the dataset</li>
+      <li>Fake Data: Fake sample generated by Generator</li>
+    </ul>
+    <h3>Discriminator:</h3>
+    <ul>
+      <li>Discriminator is the binary classifier that classifies whether the data is real or fake data</li>
+    </ul>
+    <h3>Types of GAN:</h3>
+    <ul>
+      <li>There are so many types of GANs. Some of them are:
+        <ul>
+          <li>Vanilla GAN</li>
+          <li>Conditional GAN</li>
+          <li>Cycle GAN</li>
+          <li>Deep Convolutional GAN</li>
+          <li>Super Resolution GAN</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Applications of GAN:</h3>
+    <ul>
+      <li>Image Generation</li>
+      <li>Face Generation</li>
+      <li>Image-to-Image translation</li>
+      <li>Enhancing Image Quality</li>
+    </ul>
+  </div>
+  <header>
+    DLT Unit-05
+  </header>
+  <div class="container">
+    <h2>4) Autoencoders and DAE</h2>
+    <ul>
+      <li>Autoencoders are used to compress the input data and reconstruct it to the Original data</li>
+      <li>The Main goal of an Autoencoder is to rebuild the existing data</li>
+      <li>There are mainly two components. They are:
+        <ul>
+          <li>Encoders</li>
+          <li>Decoders</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Encoders:</h3>
+    <ul>
+      <li>It compresses the input data into a latent space</li>
+    </ul>
+    <h3>Decoders:</h3>
+    <ul>
+      <li>It reconstructs the compressed data into the Original data</li>
+    </ul>
+    <img src="IMG-20251201-WA0002.jpg" alt="Autoencoders"/>
+    <h3>DAE:</h3>
+    <ul>
+      <li>DAE stands for Denoising Autoencoders</li>
+      <li>DAE is a type of Autoencoder designed to remove noise from the input data</li>
+      <img src="IMG-20251201-WA0003.jpg" alt="Denoising Autoencoders"/>
+    </ul>
+  </div>
+  <header>
+    DLT Unit-05
+  </header>
+  <div class="container">
+    <h2>5) What are the steps involved in a typical deep reinforcement learning algorithm?</h2>
+    <ul>
+      <li>Reinforcement Learning is a technique for training the machine by using an agent and an Environment</li>
+      <li>This Technique is used to produce actions and rewards in a given situation</li>
+    </ul>
+    <img src="Screenshot 2025-12-01 003427.png" alt="Reinforcement Learning"/>
+    <h3>Steps:</h3>
+    <ul>
+      <li>Initialize the Agent and Environment</li>
+      <li>The agent selects an action</li>
+      <li>Execute the action in an Environment</li>
+      <li>Environment returns the next state and Rewards</li>
+      <li>They are stored in the Memory</li>
+      <li>They connect this to the Neural Network and update the policies</li>
+      <img src="IMG-20251201-WA0004.jpg" alt="Steps in DRL"/>
+    </ul>
+  </div>
+  <header>
+    DLT Unit-05
+  </header>
+  <div class="container">
+    <h2>6) Restricted Boltzmann Machines</h2>
+    <ul>
+      <li>RBM stands for Restricted Boltzmann Machines</li>
+      <li>RBM mainly consist of two units:
+        <ul>
+          <li>visible units</li>
+          <li>hidden units</li>
+        </ul>
+      </li>
+      <li>RBM trained based on the CD Algorithm</li>
+      <li>There are mainly two phases in RBM:
+        <ul>
+          <li> Positive Phase
+            <ul>
+              <li>Updates the weight based on visible units</li>
+            </ul>
+          </li>
+          <li> Negative Phase
+            <ul>
+              <li>Updates the weight based on hidden units</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Types of RBM:</h3>
+    <ul>
+      <li>There are mainly two types
+        <ul>
+          <li> Binary RBM</li>
+          <li> Gaussian RBM</li>
+        </ul>
+      </li>
+      <li>Binary RBM:
+        <ul>
+          <li>Input and Hidden Units are binary variables</li>
+        </ul>
+      </li>
+      <li>Gaussian RBM:
+        <ul>
+          <li>Input and Hidden Units follow a Gaussian Distribution</li>
+        </ul>
+      </li>
+    </ul>
+    <h3>Difference between Boltzmann Machines and Restricted Boltzmann Machines</h3>
+<div class="table-responsive">
+<table border="1" cellpadding="8">
+  <tr>
+    <th>Boltzmann Machines</th>
+    <th>Restricted Boltzmann Machines</th>
+  </tr>
+
+  <tr>
+    <td>Visible to Visible is possible</td>
+    <td>Visible to Visible is not possible</td>
+  </tr>
+
+  <tr>
+    <td>Hidden to Hidden is possible</td>
+    <td>Hidden to Hidden is not possible</td>
+  </tr>
+
+  <tr>
+    <td>Visible to Hidden is possible</td>
+    <td>Visible to Hidden is possible</td>
+  </tr>
+
+  <tr>
+    <td>It is a fully connected bipartite graph</td>
+    <td>It is a bipartite graph</td>
+  </tr>
+
+  <tr>
+    <td>Hard to train</td>
+    <td>easy to train</td>
+  </tr>
+
+  <tr>
+    <td>works slower</td>
+    <td>works faster</td>
+  </tr>
+
+  <tr>
+    <td><img src="WhatsApp Image 2025-12-01 at 03.01.22_a9102c82.jpg" alt="Boltzmann Machines"/></td>
+    <td><img src="Screenshot 2025-12-01 030139.png" alt="Restricted Boltzmann Machines"/></td>
+  </tr>
+</table>
+</div>
+  </div>
+  <header>
+    DLT Unit-05
+  </header>
+  <div class="container">
+    <h2>7) Deep Belief Network and Deep-Net in Deep Learning</h2>
+    <ul>
+      <li>DBN stands for Deep Belief Network</li>
+      <li>Deep-Net:
+        <ul>
+          <li>Deep-Net(Deep-Network) is a neural network that has multiple hidden layers between the input and output layers</li>
+        </ul>
+      </li>
+      <li>A Deep Belief Network is made by stacking multiple Restricted Boltzmann Machines</li>
+      <li>The Output of one RBM is an input for the next RBM</li>
+      <li>There are mainly two ways to train the DBN. They are:
+        <ul>
+          <li>UnSupervised Pre-Training</li>
+          <li>Supervised fine-tuning</li>
+        </ul>
+      </li>
+    </ul>
+    <img src="IMG-20251201-WA0005.jpg" alt="Deep Belief Network"/>
+  </div>
+  <script>
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    document.querySelectorAll("img").forEach(img => {
+      img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.add("active");
+      });
+    });
+    lightbox.addEventListener("click", () => {
+      lightbox.classList.remove("active");
+    });
+  </script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const tip = document.getElementById("image-tip");
+      tip.classList.add("show");
+      setTimeout(() => {
+        tip.classList.remove("show");
+      },5000);
+    });
+  </script>
+</body>
+</html>
